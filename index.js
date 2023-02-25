@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const { User } = require('./models/index') 
+const { Role } = require('./models/index')  
 app.use(express.json());
 
 const db = require('./db');
@@ -40,6 +41,17 @@ app.get('/users', async(req, res)=> {
     const users = await User.findAll();
     return res.json(users);
 })
+
+app.post('/roles', async(req,res) =>{
+    const {privilege} = req.body;
+
+    const newPrivilege = {
+    privilege
+    }
+    const role = await Role.create(newPrivilege)
+    return res.json(role)
+})
+
 
 db.then(() => {
     //Starting server
