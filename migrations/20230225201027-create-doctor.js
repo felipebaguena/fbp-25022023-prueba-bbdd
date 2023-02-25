@@ -9,19 +9,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      User_Id: {
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
           key:"id"
         } 
       },
-      doctor_number: {
+      Specialism_Id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Specialisms",
+          key:"id"
+        } 
+      },
+      Doctor_Number: {
         type: Sequelize.STRING
       },
-      speciality_id: {
-        type: Sequelize.INTEGER
-    },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
