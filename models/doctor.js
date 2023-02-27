@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         {
           foreignKey:"user_id"
         })
+      Doctor.belongsTo(models.Specialism,
+        {
+          foreignKey:"specialism_id"
+        })
     }
   }
   Doctor.init({
