@@ -42,4 +42,14 @@ userController.getUser = async(req, res)=> {
     }
 }
 
+userController.getUserRole = async (req, res) => {
+    const userId = req.params.id;
+
+    const userrole = await User.findByPk(userId, {
+        include: {all: true}
+    });
+
+    return res.json(userrole);
+}
+
 module.exports = userController;
