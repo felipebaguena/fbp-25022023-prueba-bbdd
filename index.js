@@ -13,7 +13,6 @@ app.get('/welcome', (req, res) => {
 const router = require('./router');
 app.use(router);
 
-
 db.then(() => {
     //Starting server
     app.listen(PORT, () => console.log("Server on port " + PORT));

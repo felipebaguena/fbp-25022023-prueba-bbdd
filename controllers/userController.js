@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Role } = require("../models");
 
 const userController = {};
 const bcrypt = require('bcrypt');
@@ -55,6 +55,7 @@ userController.getUserRole = async (req, res) => {
     });
 
     return res.json(userrole);
+
 }
 
 userController.login = async (req, res) => {
@@ -65,25 +66,27 @@ userController.login = async (req, res) => {
             {
                 where: {
                     email: email
-                }
+                },
+                include: [Role]
             }
         );
 
         if (!user) {
             return res.send('Wrong Credentials')
         }
-
         const isMatch = bcrypt.compareSync(password, user.password);
 
         if (!isMatch) {
             return res.send('Wrong Credentials')
         }
+        const userRoles = user.Roles;
+
 
         const token = jwt.sign(
             { 
                 userId: user.id,
                 email: user.email,
-                // roleId: user.Roles[0].privilege
+                roles: userRoles.map((role) => role.privilege),
             }, 
             'secreto',
             { expiresIn: '2h'}
