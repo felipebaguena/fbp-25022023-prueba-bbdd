@@ -11,4 +11,6 @@ router.get('/users', userController.getUser)
 
 router.get('/users/role/:id', userController.getUserRole)
 
+router.post('/user/login/:id', userController.login)
+
 module.exports = router;
