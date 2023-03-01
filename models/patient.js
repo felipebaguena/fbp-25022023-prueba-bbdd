@@ -15,11 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         {
           foreignKey:"user_id"
         })
-      Patient.belongsToMany(models.Doctor,
-        {
-          through: "Appointments",
+      Patient.hasMany(models.Appointment,{
           foreignKey: 'patient_id'
-        })
+        });
     }
   }
   Patient.init({

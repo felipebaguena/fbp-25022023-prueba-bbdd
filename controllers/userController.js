@@ -83,7 +83,7 @@ userController.login = async (req, res) => {
             { 
                 userId: user.id,
                 email: user.email,
-                // roleId: user.role_id
+                // roleId: user.Roles[0].privilege
             }, 
             'secreto',
             { expiresIn: '2h'}
